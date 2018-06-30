@@ -18,12 +18,29 @@ class App extends Component {
     };
   }
 
+  onVolumeClick = () => {
+    if (this.state.muted) {
+      this.audio.current.muted = false;
+    } else {
+      this.audio.current.muted = true;
+    }
+    this.setState({muted: !this.state.muted})
+    }
+  
+
   componentDidMount() {
     const tl = new TimelineLite();
 
     tl.to(this.intro.current, 4.5, { opacity: 1, delay: 1 })
-      .to(this.intro.current, 1.5, { opacity: 0 })
-      .set(this.logo.current, { opacity: 1, scale: 2.75 })
+      .to(this.intro.current, 1.5, { opacity: 0,
+        onComplete: () => {
+          this.audio.current.play();
+        }//Add this to autoplay the theme music
+       })
+      .set(this.logo.current, { opacity: 1,
+         scale: 2.75,
+         delay: 0.5 // A slight delay here syncs better with the audio
+         })
       .to(this.logo.current, 8, {
         scale: 0.05,
         ease: Power2.easeOut
