@@ -91,10 +91,10 @@ class App extends Component {
           type="button"
           onClick = {this.onVolumeClick}
           >
-          {this.statemuted ? (
+          {this.state.muted ? (
             <img src={volumeOff} alt="Volume is off" />
           ) : (
-            <img src={volumeOn} alt="Voume is On" />
+            <img src={volumeOn} alt="Voume is on" />
           )}
           </button>
       </div>

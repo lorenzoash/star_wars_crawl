@@ -90,4 +90,8 @@
 }
 .volume img {
   height: 24px;
+  
+}
+button:focus {
+  outline: 0;
 }
