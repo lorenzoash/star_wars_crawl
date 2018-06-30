@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Power2, TimelineLite } from "gsap";
+import volumeOff from "./volume_off.svg";
+import volumeOn from "./volume_on.svg";
 
 class App extends Component {
   constructor(props) {
@@ -9,6 +11,11 @@ class App extends Component {
     this.intro = React.createRef(); // shiny new React 16.3 ref API!
     this.logo = React.createRef();
     this.content = React.createRef();
+    this.audio = React.createRef();
+
+    this.state = {
+      muted: true
+    };
   }
 
   componentDidMount() {
@@ -57,6 +64,22 @@ class App extends Component {
               </p>
             </div>
           </section>
+          <audio ref={this.audio} muted>
+          <source 
+            type="audio/mpeg"
+          src="https://ia801307.us.archive.org/28/items/JohnWilliamsStarWarsMainThemeFULL/John%20Williams%20-%20Star%20Wars%20Main%20Theme%20(FULL).mp3"
+           />
+          </audio>
+          <button className="volume"
+          type="button"
+          onClick = {this.onVolumeClick}
+          >
+          {this.statemuted ? (
+            <img src={volumeOff} alt="Volume is off" />
+          ) : (
+            <img src={volumeOn} alt="Voume is On" />
+          )}
+          </button>
       </div>
       
     );
